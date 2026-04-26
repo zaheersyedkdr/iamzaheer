@@ -1,0 +1,47 @@
+---
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title || 'My Blog'}</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+        line-height: 1.6;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+      pre {
+        background: #f4f4f4;
+        padding: 1rem;
+        overflow-x: auto;
+        border-radius: 4px;
+      }
+      code {
+        background: #f4f4f4;
+        padding: 0.2rem 0.4rem;
+        border-radius: 4px;
+      }
+      hr {
+        margin: 2rem 0;
+        border: none;
+        border-top: 1px solid #ddd;
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="/">Home</a>
+    </nav>
+    <slot />
+  </body>
+</html>

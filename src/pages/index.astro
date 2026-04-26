@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const categories = [...new Set(posts.map((post) => post.data.category))];
+---
+
+<BaseLayout title="Blog">
+  <h1>All Categories</h1>
+  <ul>
+    {categories.map((category) => (
+      <li><a href={`/category/${category}`}>{category}</a></li>
+    ))}
+  </ul>
+
+  <h1>All Posts</h1>
+  <ul>
+    {posts.map((post) => (
+      <li>
+        <a href={`/blog/${post.id}`}>{post.data.title}</a>
+        <span>({post.data.category})</span>
+      </li>
+    ))}
+  </ul>
+</BaseLayout>
